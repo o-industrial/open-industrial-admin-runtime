@@ -1,0 +1,81 @@
+{
+  "name": "@o-industrial/open-industrial-admin-runtime",
+  "version": "0.0.0",
+  "exports": {
+    ".": "./main.ts",
+    "./dev": "./dev.ts"
+  },
+  "license": "MIT",
+  "tasks": {
+    "build": "deno task build:fmt && deno task build:lint && deno task publish:check && deno task test",
+    "build:dev": "deno run -A dev.ts build",
+    "build:docker": "docker build --no-cache -t open-industrial-admin-runtime -f DOCKERFILE .",
+    "build:fmt": "deno fmt",
+    "build:lint": "deno lint",
+    "build:main": "deno run -A main.ts build",
+    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+    "clean:docker": "docker stop open-industrial-admin-runtime || true && docker rm open-industrial-admin-runtime || true",
+    "deploy": "npx rimraf cov && deno task build && deno task test && npx ftm git",
+    "deploy:docker": "docker run --name open-industrial-admin-runtime --network eac-runtimes --env-file .env.docker -dp 127.0.0.1:3000:3000 open-industrial-admin-runtime",
+    "dev": "deno run -A --watch=apps/,configs/,data/,routes/,src/,static/ dev.ts",
+    "network:docker": "docker network create eac-runtimes || true",
+    "publish:check": "deno publish --dry-run --allow-dirty",
+    "refresh:docker": "npx rimraf cov && deno task build:docker && deno task network:docker && deno task clean:docker && deno task deploy:docker",
+    "start": "deno run -A main.ts",
+    "test": "npx rimraf cov && deno test -A tests/tests.ts --coverage=cov",
+    "version": "deno run -A jsr:@fathym/common@0/build/version"
+  },
+  "imports": {
+    "@fathym/common": "jsr:@fathym/common@0.2.267",
+    "@fathym/eac": "jsr:@fathym/eac@0.2.122",
+    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.191",
+    "@fathym/ioc": "jsr:@fathym/ioc@0.0.14",
+    "@std/assert": "jsr:@std/assert@1.0.14",
+    "@std/log": "jsr:@std/log@0.224.14"
+  },
+  "exclude": [
+    "**/_eac-runtime/*",
+    "!src/**/.exports.ts",
+    "!dev.ts",
+    "!main.ts",
+    "!mod.ts",
+    "!configs/*"
+  ],
+  "lint": {
+    "include": [
+      "apps/",
+      "configs/",
+      "src/",
+      "tests/"
+    ],
+    "exclude": [],
+    "rules": {
+      "tags": [
+        "recommended"
+      ],
+      "include": [
+        "ban-untagged-todo"
+      ],
+      "exclude": []
+    }
+  },
+  "fmt": {
+    "include": [
+      "apps/",
+      "configs/",
+      "src/",
+      "tests/"
+    ],
+    "exclude": [],
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "proseWrap": "preserve",
+    "semiColons": true,
+    "singleQuote": true,
+    "useTabs": false
+  },
+  "unstable": [
+    "kv"
+  ],
+  "lock": false
+}
