@@ -87,8 +87,8 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             },
             ApplicationResolvers: {
               admin: {
-                PathPattern: '/admin*',
-                Priority: 500,
+                PathPattern: '*',
+                Priority: 300,
                 IsPrivate: true,
                 IsTriggerSignIn: true,
                 AccessRightLookups: ['Godmin'],
@@ -184,6 +184,7 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
                   PostLogoutRedirectUri: '/admin',
                 },
               },
+              ProviderLookup: 'azure',
             } as EaCMSALProcessor,
           },
           oauth: {
@@ -215,7 +216,7 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             } as EaCTailwindProcessor,
           },
         },
-        DenoKV: {
+        DenoKVs: {
           oauth: {
             Details: {
               Type: 'DenoKV',
@@ -345,3 +346,5 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
     return Promise.resolve(pluginConfig);
   }
 }
+
+
