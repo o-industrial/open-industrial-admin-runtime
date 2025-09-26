@@ -1,67 +1,56 @@
-# Agents Guide - Admin App
+# Agents Guide – Admin App
 
-Authenticated portal for managing licenses, access rights, users, and workspace provisioning. Admin routes require secure integrations with EaC identity and licensing services.
+Authenticated portal for managing licenses, access rights, users, and workspace provisioning. Routes assume the admin runtime is fronted by MSAL/ADB2C auth and licensed via EaC services.
 
 ## Scope
-
-- Support CRUD flows for licenses, access cards, users, and workspace metadata.
-- House debugging utilities for administrators under `debug/`.
-- Handle server actions via colocated `api/` routes using `ctx.State.OIClient.Admin` clients.
-- Exclude public marketing content or workspace runtime experiences.
+- CRUD flows for licenses, plans, prices, access rights/cards, users, and workspace metadata.
+- Diagnostics surfaces under `debug/` for authorized operators.
+- Server mutations implemented via colocated `api/` handlers that call `ctx.State.OIClient.Admin` and redirect on completion.
 
 ## Project Map
-
-- `_layout.tsx` - Shell for admin routes; wires navigation, breadcrumbs, and auth guards.
-- `_middleware.ts` - Enforces admin authentication (MSAL + EaC claims); review before auth changes.
-- `index.tsx` - Dashboard landing page.
-- `licenses/`, `access-rights/`, `access-cards/`, `users/`, `workspaces/` - Feature dirs with route + action handlers.
-- `debug/` - Diagnostics screens; ensure they remain behind strict auth and feature flags.
+- `_layout.tsx` – Shell component wiring navigation (`AdminNav`) and enforcing auth context.
+- `_middleware.ts` – Issues JWT + client instantiation via `buildOpenIndustrialAdminMiddleware`; ensure access rights remain intact.
+- `index.tsx` – Dashboard landing with key metrics.
+- Feature directories: `licenses/`, `access-rights/`, `access-cards/`, `users/`, `workspaces/`, each with UI + API handlers.
+- `debug/` – Admin-only diagnostics; keep feature-flagged when exposing sensitive data.
 
 ## Commands
-
-- `deno task dev` - Launch full runtime; log in with admin role to test changes.
-- `deno task test --filter admin` - Targeted tests or Playwright suites for admin paths.
-- `deno task test:e2e` (if configured) - Run full end-to-end coverage before releasing sensitive features.
+- `deno task dev` – Run runtime locally; sign in with admin role to validate flows.
+- `deno task test` – Execute runtime tests (add coverage for new admin workflows).
+- `deno task build` – Full validation prior to release.
 
 ## Patterns
-
-- Pair every route with an `api/` handler for mutations; redirect with HTTP 303 after write operations.
-- Use atomic organisms/templates to ensure consistent layout; avoid bespoke markup.
-- Respect feature-flag boundaries when rolling out new admin capabilities; use shared gating utilities.
-- Log critical actions (license changes, workspace provisioning) via existing telemetry hooks.
+- Pair UI routes with `api/` handlers; use `Response.redirect(..., 303)` after successful writes.
+- Atomic UI comes from `@o-industrial/common/atomic/*`; avoid bespoke markup.
+- Access control flows depend on `OpenIndustrialLicensingPlugin` + `OpenIndustrialMSALPlugin` wired in `src/plugins/RuntimePlugin.ts`; update those plugins when scopes change.
+- Logging available through the shared runtime logging provider; redact sensitive fields.
 
 ## Review & Test Checklist
-
-- Verify admin-only middleware and access checks for every new route.
-- Ensure forms validate inputs both client-side (atoms/molecules) and server-side (API handlers).
-- Update Playwright specs covering new workflows; include regression tests for license issuance.
-- Coordinate with API/runtime teams for schema changes; confirm types align across repos.
+- Confirm `_middleware.ts` still issues JWTs and resolves access rights for new routes.
+- Validate Stripe/licensing mutations in staging before production rollout.
+- Update Playwright (or equivalent) specs that cover license/access workflows.
+- Document new environment variables in `.env*` and deployment notes.
 
 ## Safety & Guardrails
+- Never log PII or secrets; rely on structured logging with redaction.
+- Ensure mutation endpoints are idempotent; handle EaC errors gracefully and surface readable messages.
+- Keep debug utilities behind strict auth/feature flags.
 
-- Never expose PII in logs or debug UIs; use redaction helpers.
-- Mutation handlers must be idempotent; rely on EaC commit confirmation before user feedback.
-- Guard feature toggles for experimental paths; disable by default in production configs.
-
-## Ownership Signals
-
-- **Primary owner:** Admin Experience Squad.
-- **Point of contact:** #oi-admin-runtime Slack channel.
+## Ownership
+- **Squad:** Admin Experience Squad.
+- **Contact:** `#oi-admin-runtime` Slack.
 - **Escalation:** Licensing Platform Lead (Priya Desai).
 
 ## Dependencies & Integrations
-
-- Depends on EaC Admin client (`ctx.State.OIClient.Admin`), licensing services, and audit logging APIs.
-- Uses MSAL plugin from `src/plugins/msal.ts` for authentication context.
-- Consumes atomic components for tables, forms, and cards; coordinate updates with design system team.
+- Requires EaC Admin/Licensing APIs via `ctx.State.OIClient`.
+- Uses Azure AD B2C + MSAL session storage provided by the runtime plugin.
+- Stripe integration for subscription management is configured through environment variables consumed by `OpenIndustrialLicensingPlugin`.
 
 ## Related Docs
-
-- Parent: [Apps overview](../Agents.md).
-- Backend guidance: [Runtime guide](../../AGENTS.md) and repo-level [Agents](../../Agents.md).
-- Cross-feature references: upcoming `src/plugins/Agents.md` for shared auth/licensing behavior.
+- Apps overview: [../Agents.md](../Agents.md).
+- Runtime overview: [../../AGENTS.md](../../AGENTS.md).
+- Reference architecture documentation: shared atomic components & runtime helpers in sibling repo.
 
 ## Changelog Expectations
-
-- Update after major flow changes (e.g., license issuance redesign) or auth model revisions.
-- Maintain release notes for administrators in the workspace change log.
+- Update after major workflow changes (license issuance, workspace provisioning) or auth adjustments.
+- Maintain release notes for administrators and support teams.
