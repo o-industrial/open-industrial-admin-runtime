@@ -1,7 +1,7 @@
-import { type Config } from 'tailwindcss';
-import scrollbar from 'tailwind-scrollbar';
-import typography from '@tailwindcss/typography';
-import unimportant from 'tailwindcss/unimportant';
+import { type Config } from 'npm:tailwindcss@3.4.1';
+import scrollbar from 'npm:tailwind-scrollbar@4.0.2';
+import typography from 'npm:@tailwindcss/typography@0.5.16';
+import unimportant from 'npm:tailwindcss-unimportant@2.1.1';
 import { neonColors } from '@o-industrial/common/atomic/utils';
 
 const keyframes = {

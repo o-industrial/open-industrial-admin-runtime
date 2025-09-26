@@ -7,7 +7,7 @@ import { useState } from 'preact/hooks';
 import { Action, ActionStyleTypes, CheckboxRow, Input } from '@o-industrial/common/atomic/atoms';
 import { LoadingIcon } from '@o-industrial/common/atomic/icons';
 import { IntentTypes } from '@o-industrial/common/types';
-import { OpenIndustrialWebState } from '../../@o-industrial/common/runtimes';
+import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 import { merge } from '@fathym/common';
 
 export const IsIsland = true;

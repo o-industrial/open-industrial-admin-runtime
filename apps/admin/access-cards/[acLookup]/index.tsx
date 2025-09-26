@@ -14,7 +14,7 @@ import {
 import { LoadingIcon } from '@o-industrial/common/atomic/icons';
 import { IntentTypes } from '@o-industrial/common/types';
 import { merge } from '@fathym/common';
-import { OpenIndustrialWebState } from '../../@o-industrial/common/runtimes';
+import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 
 export const IsIsland = true;
 

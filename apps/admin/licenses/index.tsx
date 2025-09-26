@@ -1,31 +1,29 @@
 import { PageProps } from '@fathym/eac-applications/preact';
 import type { EaCRuntimeHandlerSet } from '@fathym/eac/runtime/pipelines';
-import { JSX } from 'preact';
+import type {
+  EaCLicenseAsCode,
+  EaCLicenseStripeDetails,
+  EverythingAsCodeLicensing,
+} from '@fathym/eac-licensing';
+import type { EverythingAsCode } from '@fathym/eac';
 import { useState } from 'preact/hooks';
-import type { EaCAccessRightAsCode, EverythingAsCodeIdentity } from '@fathym/eac-identity';
+import { JSX } from 'preact';
 import { Action, ActionStyleTypes, Input } from '@o-industrial/common/atomic/atoms';
-import { OpenIndustrialWebState } from '../@o-industrial/common/runtimes';
+import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 
 export const IsIsland = true;
 
-// Types now provided by @fathym/eac-identity
-
-type AccessRightsPageData = {
-  AccessRights: Record<string, EaCAccessRightAsCode>;
+type LicensesPageData = {
+  Licenses: Record<string, EaCLicenseAsCode>;
   Username: string;
 };
 
-export const handler: EaCRuntimeHandlerSet<
-  OpenIndustrialWebState,
-  AccessRightsPageData
-> = {
+export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, LicensesPageData> = {
   GET: async (_req, ctx) => {
-    const eac = await ctx.State.OIClient.Admin.GetEaC<
-      { AccessRights?: Record<string, EaCAccessRightAsCode> }
-    >();
+    const eac = await ctx.State.OIClient.Admin.GetEaC<EverythingAsCodeLicensing>();
 
     return ctx.Render({
-      AccessRights: eac?.AccessRights || {},
+      Licenses: eac.Licenses || {},
       Username: ctx.State.Username,
     });
   },
@@ -40,31 +38,31 @@ export const handler: EaCRuntimeHandlerSet<
         fd.forEach((v, k) => (payload[k] = String(v)));
       }
 
-      const arLookup = (payload['arLookup'] || '').trim();
-      if (!arLookup) throw new Error('arLookup is required');
+      const licLookup = (payload['licLookup'] || '').trim();
+      if (!licLookup) throw new Error('licLookup is required');
 
-      const details: NonNullable<EaCAccessRightAsCode['Details']> = {
-        Name: payload['Name']?.trim() || undefined,
-        Description: payload['Description']?.trim() || undefined,
-        Tags: (payload['Tags'] || '')
-          .split(',')
-          .map((t) => t.trim())
-          .filter(Boolean),
+      const details: EaCLicenseStripeDetails = {
+        Name: payload['Name'] ?? '',
+        Description: payload['Description'] ?? '',
         Enabled: false,
-      } as NonNullable<EaCAccessRightAsCode['Details']>;
+        PublishableKey: '',
+        SecretKey: '',
+        WebhookSecret: '',
+      };
 
-      const commit: EverythingAsCodeIdentity = {
-        AccessRights: {
-          [arLookup]: {
+      const commit: EverythingAsCode = {
+        Licenses: {
+          [licLookup]: {
             Details: details,
-          } as EaCAccessRightAsCode,
+            Plans: {},
+          } as EaCLicenseAsCode,
         },
-      } as EverythingAsCodeIdentity;
+      } as EverythingAsCode;
 
       await ctx.State.OIClient.Admin.CommitEaC(commit);
 
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromOrigin(`/admin/access-rights/${arLookup}`),
+        ctx.Runtime.URLMatch.FromOrigin(`/admin/licenses/${licLookup}`),
         303,
       );
     } catch (err) {
@@ -73,64 +71,57 @@ export const handler: EaCRuntimeHandlerSet<
   },
 };
 
-export default function AccessRightsPage({
-  Data: { AccessRights, Username },
-}: PageProps<AccessRightsPageData>) {
+export default function LicensesPage(
+  { Data: { Licenses, Username } }: PageProps<LicensesPageData>,
+) {
   const [showCreate, setShowCreate] = useState(false);
-  const [arLookup, setArLookup] = useState('');
+  const [licLookup, setLicLookup] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [tags, setTags] = useState('');
 
   // form posts plain fields; server builds structure
 
   return (
     <div class='-:-:p-6 -:-:space-y-6'>
       <div class='-:-:flex -:-:items-center -:-:justify-between'>
-        <h1 class='-:-:text-2xl -:-:font-semibold -:-:text-neutral-100'>
-          Access Rights
-        </h1>
-        {Username && <span class='-:-:text-sm -:-:text-neutral-400'>{Username}</span>}
+        <h1 class='-:-:text-2xl -:-:font-semibold -:-:text-neutral-100'>Licenses</h1>
+        {Username && <span class='-:-:text-sm -:-:text-neutral-400'>👤 {Username}</span>}
       </div>
 
       <div class='-:-:flex -:-:items-center -:-:justify-between'>
-        <p class='-:-:text-sm -:-:text-neutral-300'>
-          Organize and manage identity access rights.
-        </p>
+        <p class='-:-:text-sm -:-:text-neutral-300'>Manage product licenses, plans, and pricing.</p>
         <Action
           onClick={() => setShowCreate((s) => !s)}
           intentType={1}
           styleType={ActionStyleTypes.Solid | ActionStyleTypes.Rounded}
         >
-          {showCreate ? 'Close' : 'New Access Right'}
+          {showCreate ? 'Close' : 'New License'}
         </Action>
       </div>
 
       {showCreate && (
         <div class='-:-:rounded-xl -:-:border -:-:border-neutral-700 -:-:bg-neutral-900/60 -:-:p-4 -:-:space-y-4 -:-:shadow-neon'>
-          <h2 class='-:-:text-lg -:-:font-semibold -:-:text-neutral-100'>
-            Create Access Right
-          </h2>
+          <h2 class='-:-:text-lg -:-:font-semibold -:-:text-neutral-100'>Create License</h2>
           <form
             method='POST'
-            action='/admin/access-rights'
+            action='/admin/licenses'
             class='-:-:grid -:-:grid-cols-1 md:-:-:grid-cols-2 -:-:gap-4'
           >
             <div>
               <Input
-                label='Access Right Lookup'
-                name='arLookup'
-                placeholder='unique-access-right-key'
-                value={arLookup}
+                label='License Lookup'
+                name='licLookup'
+                placeholder='unique-license-key'
+                value={licLookup}
                 onInput={(e: JSX.TargetedEvent<HTMLInputElement, Event>) =>
-                  setArLookup(e.currentTarget.value)}
+                  setLicLookup(e.currentTarget.value)}
               />
             </div>
             <div>
               <Input
                 label='Display Name'
                 name='Name'
-                placeholder='Access Right Name'
+                placeholder='Product License Name'
                 value={name}
                 onInput={(e: JSX.TargetedEvent<HTMLInputElement, Event>) =>
                   setName(e.currentTarget.value)}
@@ -140,7 +131,7 @@ export default function AccessRightsPage({
               <Input
                 label='Description'
                 name='Description'
-                placeholder='Short description for this access right'
+                placeholder='Short description for this license'
                 multiline
                 rows={3}
                 value={description}
@@ -148,17 +139,8 @@ export default function AccessRightsPage({
                   setDescription(e.currentTarget.value)}
               />
             </div>
-            <div class='md:-:-:col-span-2'>
-              <Input
-                label='Tags (comma-separated)'
-                name='Tags'
-                placeholder='e.g. admin, billing, read-only'
-                value={tags}
-                onInput={(e: JSX.TargetedEvent<HTMLInputElement, Event>) =>
-                  setTags(e.currentTarget.value)}
-              />
-            </div>
-            {/* Server-side builds structure; no JSON hidden field */}
+
+            {/* Server builds structure; no JSON hidden field */}
 
             <div class='md:-:-:col-span-2 -:-:flex -:-:justify-end -:-:gap-2'>
               <Action type='submit'>Create</Action>
@@ -176,7 +158,7 @@ export default function AccessRightsPage({
       )}
 
       <div class='-:-:grid -:-:grid-cols-1 sm:-:-:grid-cols-2 lg:-:-:grid-cols-3 -:-:gap-4'>
-        {Object.entries(AccessRights).map(([lookup, ar]) => (
+        {Object.entries(Licenses).map(([lookup, lic]) => (
           <div
             key={lookup}
             class='-:-:rounded-xl -:-:border -:-:border-neutral-800 -:-:bg-neutral-900/50 -:-:p-4 -:-:space-y-3 -:-:hover:-:-:border-neon-blue-500 -:-:transition-default'
@@ -184,29 +166,19 @@ export default function AccessRightsPage({
             <div class='-:-:flex -:-:items-start -:-:justify-between'>
               <div>
                 <h3 class='-:-:text-base -:-:font-semibold -:-:text-neutral-100'>
-                  {ar.Details?.Name || lookup}
+                  {lic.Details?.Name || lookup}
                 </h3>
                 <p class='-:-:text-xs -:-:text-neutral-400'>Lookup: {lookup}</p>
               </div>
               <Action
-                href={`/admin/access-rights/${lookup}`}
-                data-eac-bypass-base
+                href={`/admin/licenses/${lookup}`}
                 styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
               >
                 Manage
               </Action>
             </div>
-
-            {ar.Details?.Description && (
-              <p class='-:-:text-sm -:-:text-neutral-300'>
-                {ar.Details.Description}
-              </p>
-            )}
-
-            {ar.Details?.Tags && ar.Details.Tags.length > 0 && (
-              <p class='-:-:text-xs -:-:text-neutral-400'>
-                Tags: {ar.Details.Tags.join(', ')}
-              </p>
+            {lic.Details?.Description && (
+              <p class='-:-:text-sm -:-:text-neutral-300'>{lic.Details.Description}</p>
             )}
           </div>
         ))}

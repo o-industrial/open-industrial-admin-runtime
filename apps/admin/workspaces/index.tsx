@@ -6,7 +6,7 @@ import { PageProps } from '@fathym/eac-applications/preact';
 import { OpenIndustrialAPIClient } from '@o-industrial/common/api';
 import { SearchInput } from '@o-industrial/common/atomic/atoms';
 import { WorkspaceList } from '@o-industrial/common/atomic/molecules';
-import { OpenIndustrialWebState } from '../@o-industrial/common/runtimes';
+import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 
 type WorkspacesPageData = {
   OIAPIRoot: string;

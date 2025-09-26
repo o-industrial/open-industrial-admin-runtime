@@ -30,9 +30,22 @@
     "@fathym/eac": "jsr:@fathym/eac@0.2.122",
     "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.191",
     "@fathym/ioc": "jsr:@fathym/ioc@0.0.14",
+    "@fathym/atomic": "jsr:@fathym/atomic@0.0.185",
+    "@fathym/atomic-design-kit": "jsr:@fathym/atomic-design-kit@0",
+    "@fathym/atomic-icons": "jsr:@fathym/atomic-icons@0.0.101",
+    "@fathym/atomic-icons/plugin": "jsr:@fathym/atomic-icons@0.0.101/plugin",
+    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.23",
+    "@fathym/eac-identity": "jsr:@fathym/eac-identity@0.0.26",
+    "@fathym/msal": "jsr:@fathym/msal@0.0.56",
     "@std/assert": "jsr:@std/assert@1.0.14",
     "@std/log": "jsr:@std/log@0.224.14",
-    
+
+    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.56",
+    // "@fathym/eac-licensing": "../eac-licensing/src/licensing/.exports.ts",
+    // "@fathym/eac-licensing/clients": "../eac-licensing/src/clients/.exports.ts",
+    // "@fathym/eac-licensing/steward/api": "../eac-licensing/src/steward/api/.exports.ts",
+    // "@fathym/eac-licensing/steward/plugins": "../eac-licensing/src/steward/plugins/.exports.ts",
+
     // "@o-industrial/common": "jsr:@o-industrial/common@0.0.442",
     "@o-industrial/common/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     "@o-industrial/common/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
@@ -62,7 +75,7 @@
     "@o-industrial/common/packs/azure-iot": "../open-industrial-reference-architecture/src/packs/azure-iot/.pack.ts",
     "@o-industrial/common/packs/oi-core": "../open-industrial-reference-architecture/src/packs/oi-core/.pack.ts",
 
-    "@o-industrial/common/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
+    "@o-industrial/common/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts"
   },
   "exclude": [
     "**/_eac-runtime/*",

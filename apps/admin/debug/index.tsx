@@ -1,5 +1,5 @@
 import { EaCRuntimeHandlerSet } from '@fathym/eac/runtime/pipelines';
-import { OpenIndustrialWebState } from '../@o-industrial/common/runtimes';
+import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 import { EverythingAsCodeIdentity } from '@fathym/eac-identity';
 
 export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState> = {

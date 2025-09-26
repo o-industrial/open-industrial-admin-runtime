@@ -133,8 +133,6 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
               AppDFSLookup: 'local:apps/admin',
               ComponentDFSLookups: [
                 ['local:apps/admin', ['tsx']],
-                ['jsr:@fathym/atomic', ['tsx']],
-                ['jsr:@fathym/atomic-design-kit', ['tsx']],
                 ['jsr:@o-industrial/common', ['tsx']],
               ],
             } as EaCPreactAppProcessor,
@@ -207,8 +205,6 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
               Type: 'Tailwind',
               DFSLookups: [
                 'local:apps/admin',
-                'jsr:@fathym/atomic',
-                'jsr:@fathym/atomic-design-kit',
                 'jsr:@o-industrial/common',
               ],
               ConfigPath: './tailwind.config.ts',
@@ -251,22 +247,6 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
               Type: 'Local',
               FileRoot: './apps/assets/',
             } as EaCLocalDistributedFileSystemDetails,
-          },
-          'jsr:@fathym/atomic': {
-            Details: {
-              Type: 'JSR',
-              Package: '@fathym/atomic',
-              Version: '',
-              WorkerPath: import.meta.resolve('@fathym/eac/dfs/workers/jsr'),
-            } as EaCJSRDistributedFileSystemDetails,
-          },
-          'jsr:@fathym/atomic-design-kit': {
-            Details: {
-              Type: 'JSR',
-              Package: '@fathym/atomic-design-kit',
-              Version: '',
-              WorkerPath: import.meta.resolve('@fathym/eac/dfs/workers/jsr'),
-            } as EaCJSRDistributedFileSystemDetails,
           },
           'jsr:@o-industrial/common': {
             Details: {

@@ -14,7 +14,7 @@ import { Action, ActionStyleTypes, Input } from '@o-industrial/common/atomic/ato
 import { LoadingIcon } from '@o-industrial/common/atomic/icons';
 import type { EverythingAsCode } from '@fathym/eac';
 import { merge } from '@fathym/common';
-import { OpenIndustrialWebState } from '../../../../@o-industrial/common/runtimes';
+import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 import { IntentTypes } from '@o-industrial/common/types';
 
 export const IsIsland = true;
