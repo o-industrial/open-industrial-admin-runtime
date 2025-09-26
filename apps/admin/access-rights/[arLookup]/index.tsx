@@ -73,7 +73,7 @@ export const handler: EaCRuntimeHandlerSet<
       await ctx.State.OIClient.Admin.CommitEaC(commit);
 
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromOrigin(`/admin/access-rights/${arLookup}`),
+        ctx.Runtime.URLMatch.FromBase(`/access-rights/${arLookup}`),
         303,
       );
     } catch (err) {
@@ -118,13 +118,13 @@ export default function AccessRightPage({
 
     try {
       setBusy(true);
-      const res = await fetch(`/admin/access-rights/${ArLookup}`, {
+      const res = await fetch(`/access-rights/${ArLookup}`, {
         method: 'DELETE',
         headers: { 'content-type': 'application/json' },
       });
 
       if (res.ok) {
-        location.href = '/admin/access-rights';
+        location.href = '/access-rights';
       } else {
         setBusy(false);
         const msg = await res.text();
@@ -161,8 +161,7 @@ export default function AccessRightPage({
             <p class='-:-:text-xs -:-:text-neutral-400'>Lookup: {ArLookup}</p>
           </div>
           <Action
-            href='/admin/access-rights'
-            data-eac-bypass-base
+            href='/access-rights'
             styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
           >
             Back
@@ -171,8 +170,7 @@ export default function AccessRightPage({
 
         <form
           method='POST'
-          action={`/admin/access-rights/${ArLookup}`}
-          data-eac-bypass-base
+          action={`/access-rights/${ArLookup}`}
           onSubmit={handleFormSubmit as any}
           class='-:-:grid -:-:grid-cols-1 md:-:-:grid-cols-2 -:-:gap-4'
         >

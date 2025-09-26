@@ -56,8 +56,7 @@ export default function AdminWorkspaceManagePage({
         <div class='-:-:flex -:-:items-center -:-:gap-2'>
           {owner && (
             <Action
-              href={`/admin/users/${encodeURIComponent(owner)}`}
-              data-eac-bypass-base
+              href={`/users/${encodeURIComponent(owner)}`}
               styleType={ActionStyleTypes.Outline |
                 ActionStyleTypes.Rounded |
                 ActionStyleTypes.UltraThin}

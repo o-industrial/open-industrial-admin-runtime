@@ -102,8 +102,8 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, PricePageData
 
       await ctx.State.OIClient.Admin.CommitEaC(commit);
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromOrigin(
-          `/admin/licenses/${licLookup}/${planLookup}/${priceLookup}`,
+        ctx.Runtime.URLMatch.FromBase(
+          `/licenses/${licLookup}/${planLookup}/${priceLookup}`,
         ),
         303,
       );
@@ -178,7 +178,6 @@ export default function PricePage({
         <h2 class='-:-:text-lg -:-:font-semibold -:-:text-neutral-100'>Details</h2>
         <form
           method='POST'
-          action={`/admin/licenses/${LicLookup}/${PlanLookup}/${PriceLookup}`}
           onSubmit={() => setBusy(true) as any}
           class='-:-:grid -:-:grid-cols-1 md:-:-:grid-cols-2 -:-:gap-4'
         >
@@ -251,7 +250,7 @@ export default function PricePage({
                           },
                         );
                         if (res.ok) {
-                          location.href = `/admin/licenses/${LicLookup}/${PlanLookup}`;
+                          location.href = `/licenses/${LicLookup}/${PlanLookup}`;
                         } else {
                           setBusy(false);
                           const msg = await res.text();

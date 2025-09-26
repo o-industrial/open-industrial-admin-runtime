@@ -62,7 +62,7 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, LicensesPageD
       await ctx.State.OIClient.Admin.CommitEaC(commit);
 
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromOrigin(`/admin/licenses/${licLookup}`),
+        ctx.Runtime.URLMatch.FromBase(`/licenses/${licLookup}`),
         303,
       );
     } catch (err) {
@@ -104,7 +104,6 @@ export default function LicensesPage(
           <h2 class='-:-:text-lg -:-:font-semibold -:-:text-neutral-100'>Create License</h2>
           <form
             method='POST'
-            action='/admin/licenses'
             class='-:-:grid -:-:grid-cols-1 md:-:-:grid-cols-2 -:-:gap-4'
           >
             <div>
@@ -171,7 +170,7 @@ export default function LicensesPage(
                 <p class='-:-:text-xs -:-:text-neutral-400'>Lookup: {lookup}</p>
               </div>
               <Action
-                href={`/admin/licenses/${lookup}`}
+                href={`/licenses/${lookup}`}
                 styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
               >
                 Manage

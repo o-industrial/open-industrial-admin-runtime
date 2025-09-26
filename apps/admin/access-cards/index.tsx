@@ -55,7 +55,7 @@ export const handler: EaCRuntimeHandlerSet<
       const _resp = await ctx.State.OIClient.Admin.CommitEaC(commit);
 
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromOrigin(`/admin/access-cards/${acLookup}`),
+        ctx.Runtime.URLMatch.FromBase(`/access-cards/${acLookup}`),
         303,
       );
     } catch (err) {
@@ -101,7 +101,6 @@ export default function AccessConfigurationsPage({
           </h2>
           <form
             method='POST'
-            action='/admin/access-cards'
             class='-:-:grid -:-:grid-cols-1 md:-:-:grid-cols-2 -:-:gap-4'
           >
             <div>
@@ -166,8 +165,7 @@ export default function AccessConfigurationsPage({
                 <p class='-:-:text-xs -:-:text-neutral-400'>Lookup: {lookup}</p>
               </div>
               <Action
-                href={`/admin/access-cards/${lookup}`}
-                data-eac-bypass-base
+                href={`/access-cards/${lookup}`}
                 styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
               >
                 Manage

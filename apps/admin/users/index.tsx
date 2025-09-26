@@ -48,7 +48,7 @@ export const handler: EaCRuntimeHandlerSet<
         const delUser = (payload['Username'] || '').trim();
         if (!delUser) return new Response('Username is required', { status: 400 });
         await ctx.State.OIClient.Admin.DeleteUser(delUser);
-        const redirect = new URL(ctx.Runtime.URLMatch.FromOrigin('/admin/users'));
+        const redirect = new URL(ctx.Runtime.URLMatch.FromBase('/users'));
         redirect.searchParams.set('deleted', delUser);
         return Response.redirect(redirect, 303);
       } else {
@@ -57,7 +57,7 @@ export const handler: EaCRuntimeHandlerSet<
 
         await ctx.State.OIClient.Admin.InviteUser(email);
 
-        const redirect = new URL(ctx.Runtime.URLMatch.FromOrigin('/admin/users'));
+        const redirect = new URL(ctx.Runtime.URLMatch.FromBase('/users'));
         redirect.searchParams.set('invited', email);
         return Response.redirect(redirect, 303);
       }
@@ -131,8 +131,7 @@ export default function AdminUsersPage({
               {u.Username && (
                 <div class='-:-:flex -:-:gap-2'>
                   <Action
-                    href={`/admin/users/${encodeURIComponent(u.Username)}`}
-                    data-eac-bypass-base
+                    href={`/users/${encodeURIComponent(u.Username)}`}
                     styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
                   >
                     Manage
@@ -149,8 +148,7 @@ export default function AdminUsersPage({
           <div class='-:-:rounded-t-xl -:-:border -:-:border-neutral-800 -:-:bg-neutral-900/80 -:-:backdrop-blur -:-:px-4 -:-:py-3 -:-:shadow-neon'>
             <form
               method='POST'
-              action='/admin/users'
-              data-eac-bypass-base
+              action='/users'
               class='-:-:grid -:-:grid-cols-1 md:-:-:grid-cols-3 -:-:gap-3 -:-:items-end'
             >
               <input type='hidden' name='action' value='inviteUser' />

@@ -70,14 +70,14 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, UserManagePag
       } else if (action === 'deleteUser') {
         await ctx.State.OIClient.Admin.DeleteUser(username);
         return Response.redirect(
-          ctx.Runtime.URLMatch.FromOrigin(
-            `/admin/users?deleted=${encodeURIComponent(username)}`,
+          ctx.Runtime.URLMatch.FromBase(
+            `/users?deleted=${encodeURIComponent(username)}`,
           ),
           303,
         );
       }
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromOrigin(`/admin/users/${encodeURIComponent(username)}`),
+        ctx.Runtime.URLMatch.FromBase(`/users/${encodeURIComponent(username)}`),
         303,
       );
     } catch (err) {
@@ -99,7 +99,6 @@ export default function AdminUserManagePage(
           <span class='-:-:text-sm -:-:text-neutral-400'>{Username}</span>
           <form
             method='POST'
-            data-eac-bypass-base
             onSubmit={(e) => {
               if (!confirm('Delete this user? This cannot be undone.')) {
                 e.preventDefault();
@@ -133,7 +132,7 @@ export default function AdminUserManagePage(
                   </div>
                   <div class='-:-:text-neutral-400 -:-:text-xs'>Lookup: {lookup}</div>
                 </div>
-                <form method='POST' data-eac-bypass-base>
+                <form method='POST'>
                   <input type='hidden' name='action' value='cancelLicense' />
                   <input type='hidden' name='licLookup' value={lookup} />
                   <Action
@@ -151,7 +150,7 @@ export default function AdminUserManagePage(
 
         <div class='-:-:space-y-4'>
           <h2 class='-:-:text-lg -:-:font-semibold -:-:text-neutral-100'>Access Cards</h2>
-          <form method='POST' data-eac-bypass-base class='-:-:flex -:-:gap-2'>
+          <form method='POST' class='-:-:flex -:-:gap-2'>
             <input type='hidden' name='action' value='addCard' />
             <div class='-:-:flex-1'>
               <label class='-:-:block -:-:text-sm -:-:text-neutral-300'>
@@ -191,7 +190,7 @@ export default function AdminUserManagePage(
                   </div>
                   <div class='-:-:text-neutral-400 -:-:text-xs'>Direct assignment</div>
                 </div>
-                <form method='POST' data-eac-bypass-base>
+                <form method='POST'>
                   <input type='hidden' name='action' value='removeCard' />
                   <input
                     type='hidden'
@@ -223,7 +222,7 @@ export default function AdminUserManagePage(
               onSelect={(eac) => {
                 const lookup = eac.EnterpriseLookup || '';
                 if (lookup) {
-                  location.href = `/admin/workspaces/${encodeURIComponent(lookup)}`;
+                  location.href = `/workspaces/${encodeURIComponent(lookup)}`;
                 }
               }}
             />

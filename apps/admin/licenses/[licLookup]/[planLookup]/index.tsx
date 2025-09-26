@@ -100,8 +100,8 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, PlanPageData>
 
         await ctx.State.OIClient.Admin.CommitEaC(commit);
         return Response.redirect(
-          ctx.Runtime.URLMatch.FromOrigin(
-            `/admin/licenses/${licLookup}/${planLookup}/${priceLookup}`,
+          ctx.Runtime.URLMatch.FromBase(
+            `/licenses/${licLookup}/${planLookup}/${priceLookup}`,
           ),
           303,
         );
@@ -147,8 +147,8 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, PlanPageData>
 
         await ctx.State.OIClient.Admin.CommitEaC(commit);
         return Response.redirect(
-          ctx.Runtime.URLMatch.FromOrigin(
-            `/admin/licenses/${licLookup}/${planLookup}`,
+          ctx.Runtime.URLMatch.FromBase(
+            `/licenses/${licLookup}/${planLookup}`,
           ),
           303,
         );
@@ -231,7 +231,6 @@ export default function PlanPage({
           </div>
           <form
             method='POST'
-            action={`/admin/licenses/${LicLookup}/${PlanLookup}`}
             onSubmit={() => setBusy(true) as any}
             class='-:-:grid -:-:grid-cols-1 md:-:-:grid-cols-2 -:-:gap-4'
           >
@@ -342,12 +341,12 @@ export default function PlanPage({
                         if (!confirm('Delete this plan? This cannot be undone.')) return;
                         try {
                           setBusy(true);
-                          const res = await fetch(`/admin/licenses/${LicLookup}/${PlanLookup}`, {
+                          const res = await fetch(`/licenses/${LicLookup}/${PlanLookup}`, {
                             method: 'DELETE',
                             headers: { 'content-type': 'application/json' },
                           });
                           if (res.ok) {
-                            location.href = `/admin/licenses/${LicLookup}`;
+                            location.href = `/licenses/${LicLookup}`;
                           } else {
                             setBusy(false);
                             const msg = await res.text();
@@ -385,7 +384,7 @@ export default function PlanPage({
               <li key={priceLookup} class='-:-:flex -:-:items-center -:-:justify-between'>
                 <div class='-:-:text-neutral-200'>{price.Details?.Name || priceLookup}</div>
                 <Action
-                  href={`/admin/licenses/${LicLookup}/${PlanLookup}/${priceLookup}`}
+                  href={`/licenses/${LicLookup}/${PlanLookup}/${priceLookup}`}
                   styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
                 >
                   Open
@@ -395,7 +394,6 @@ export default function PlanPage({
           </ul>
           <form
             method='POST'
-            action={`/admin/licenses/${LicLookup}/${PlanLookup}`}
             class='-:-:flex -:-:items-end -:-:gap-2'
           >
             <Input label='New price lookup' name='PriceLookup' placeholder='e.g., monthly-usd' />

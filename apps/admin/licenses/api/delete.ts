@@ -22,7 +22,7 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState> = {
 
       await ctx.State.OIClient.Admin.DeleteEaC({ Licenses: [licLookup] });
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromOrigin('/admin/licenses'),
+        ctx.Runtime.URLMatch.FromBase('/licenses'),
         303,
       );
     } catch (err) {
