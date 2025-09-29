@@ -16,6 +16,7 @@ import type { EverythingAsCode } from '@fathym/eac';
 import { merge } from '@fathym/common';
 import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 import { IntentTypes } from '@o-industrial/common/types';
+import { createAdminRuntimeClient } from '../../../../../../src/client/AdminRuntimeAPIClient.ts';
 
 export const IsIsland = true;
 
@@ -157,6 +158,7 @@ export default function PricePage({
       : { Details: defaultDetails } as any
   );
   const [busy, setBusy] = useState(false);
+  const apiClient = useMemo(() => createAdminRuntimeClient(), []);
 
   const update = (field: keyof EaCLicensePriceDetails, value: any) =>
     setLocal({ ...local, Details: { ...local.Details, [field]: value } });
@@ -242,12 +244,10 @@ export default function PricePage({
                       if (!confirm('Delete this price? This cannot be undone.')) return;
                       try {
                         setBusy(true);
-                        const res = await fetch(
-                          `/admin/licenses/${LicLookup}/${PlanLookup}/${PriceLookup}`,
-                          {
-                            method: 'DELETE',
-                            headers: { 'content-type': 'application/json' },
-                          },
+                        const res = await apiClient.Licenses.DeletePlanPrice(
+                          LicLookup,
+                          PlanLookup,
+                          PriceLookup,
                         );
                         if (res.ok) {
                           location.href = `/licenses/${LicLookup}/${PlanLookup}`;

@@ -64,7 +64,7 @@ export const handler: EaCRuntimeHandlerSet<
       await ctx.State.OIClient.Admin.CommitEaC(commit);
 
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromBase(`/access-rights/${arLookup}`),
+        ctx.Runtime.URLMatch.FromBase(`./access-rights/${arLookup}`),
         303,
       );
     } catch (err) {
@@ -188,7 +188,7 @@ export default function AccessRightsPage({
                 <p class='-:-:text-xs -:-:text-neutral-400'>Lookup: {lookup}</p>
               </div>
               <Action
-                href={`/access-rights/${lookup}`}
+                href={`./access-rights/${lookup}`}
                 styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
               >
                 Manage

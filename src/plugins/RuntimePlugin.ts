@@ -88,7 +88,7 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             ApplicationResolvers: {
               admin: {
                 PathPattern: '*',
-                Priority: 300,
+                Priority: 100,
                 IsPrivate: true,
                 IsTriggerSignIn: true,
                 AccessRightLookups: ['Godmin'],
@@ -346,5 +346,3 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
     return Promise.resolve(pluginConfig);
   }
 }
-
-

@@ -1,5 +1,6 @@
 // deno-lint-ignore-file no-explicit-any
 import { useMemo, useState } from 'preact/hooks';
+import { createAdminRuntimeClient } from '../../../../../src/client/AdminRuntimeAPIClient.ts';
 import { JSX } from 'preact';
 import { PageProps } from '@fathym/eac-applications/preact';
 import type { EaCRuntimeHandlerSet } from '@fathym/eac/runtime/pipelines';
@@ -203,6 +204,7 @@ export default function PlanPage({
       : { Details: defaultDetails, Prices: {} as any } as any
   );
   const [busy, setBusy] = useState(false);
+  const apiClient = useMemo(() => createAdminRuntimeClient(), []);
   const [accessConfigSelections, setAccessConfigSelections] = useState<Set<string>>(
     new Set<string>((Plan as any)?.AccessConfigurationLookups || []),
   );
@@ -341,10 +343,10 @@ export default function PlanPage({
                         if (!confirm('Delete this plan? This cannot be undone.')) return;
                         try {
                           setBusy(true);
-                          const res = await fetch(`/licenses/${LicLookup}/${PlanLookup}`, {
-                            method: 'DELETE',
-                            headers: { 'content-type': 'application/json' },
-                          });
+                          const res = await apiClient.Licenses.DeletePlan(
+                            LicLookup,
+                            PlanLookup,
+                          );
                           if (res.ok) {
                             location.href = `/licenses/${LicLookup}`;
                           } else {

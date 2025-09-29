@@ -165,7 +165,7 @@ export default function AccessConfigurationsPage({
                 <p class='-:-:text-xs -:-:text-neutral-400'>Lookup: {lookup}</p>
               </div>
               <Action
-                href={`/access-cards/${lookup}`}
+                href={`./access-cards/${lookup}`}
                 styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
               >
                 Manage

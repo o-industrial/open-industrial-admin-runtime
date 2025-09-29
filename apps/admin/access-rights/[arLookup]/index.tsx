@@ -3,7 +3,8 @@ import { PageProps } from '@fathym/eac-applications/preact';
 import type { EaCRuntimeHandlerSet } from '@fathym/eac/runtime/pipelines';
 import type { EaCAccessRightAsCode, EverythingAsCodeIdentity } from '@fathym/eac-identity';
 import { JSX } from 'preact';
-import { useState } from 'preact/hooks';
+import { useMemo, useState } from 'preact/hooks';
+import { createAdminRuntimeClient } from '../../../../src/client/AdminRuntimeAPIClient.ts';
 import { Action, ActionStyleTypes, CheckboxRow, Input } from '@o-industrial/common/atomic/atoms';
 import { LoadingIcon } from '@o-industrial/common/atomic/icons';
 import { IntentTypes } from '@o-industrial/common/types';
@@ -73,7 +74,7 @@ export const handler: EaCRuntimeHandlerSet<
       await ctx.State.OIClient.Admin.CommitEaC(commit);
 
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromBase(`/access-rights/${arLookup}`),
+        ctx.Runtime.URLMatch.FromBase(`./access-rights/${arLookup}`),
         303,
       );
     } catch (err) {
@@ -108,6 +109,7 @@ export default function AccessRightPage({
   );
   const [enabled, setEnabled] = useState(!!AccessRight?.Details?.Enabled);
   const [busy, setBusy] = useState(false);
+  const apiClient = useMemo(() => createAdminRuntimeClient(), []);
 
   // local state only; POST handler parses form fields on submit
 
@@ -118,13 +120,10 @@ export default function AccessRightPage({
 
     try {
       setBusy(true);
-      const res = await fetch(`/access-rights/${ArLookup}`, {
-        method: 'DELETE',
-        headers: { 'content-type': 'application/json' },
-      });
+      const res = await apiClient.AccessRights.Delete(ArLookup);
 
       if (res.ok) {
-        location.href = '/access-rights';
+        location.href = './access-rights';
       } else {
         setBusy(false);
         const msg = await res.text();
@@ -161,7 +160,7 @@ export default function AccessRightPage({
             <p class='-:-:text-xs -:-:text-neutral-400'>Lookup: {ArLookup}</p>
           </div>
           <Action
-            href='/access-rights'
+            href='./access-rights'
             styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
           >
             Back
