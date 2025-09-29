@@ -102,7 +102,7 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, PlanPageData>
         await ctx.State.OIClient.Admin.CommitEaC(commit);
         return Response.redirect(
           ctx.Runtime.URLMatch.FromBase(
-            `/licenses/${licLookup}/${planLookup}/${priceLookup}`,
+            `./licenses/${licLookup}/${planLookup}/${priceLookup}`,
           ),
           303,
         );
@@ -149,7 +149,7 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, PlanPageData>
         await ctx.State.OIClient.Admin.CommitEaC(commit);
         return Response.redirect(
           ctx.Runtime.URLMatch.FromBase(
-            `/licenses/${licLookup}/${planLookup}`,
+            `./licenses/${licLookup}/${planLookup}`,
           ),
           303,
         );
@@ -386,7 +386,7 @@ export default function PlanPage({
               <li key={priceLookup} class='-:-:flex -:-:items-center -:-:justify-between'>
                 <div class='-:-:text-neutral-200'>{price.Details?.Name || priceLookup}</div>
                 <Action
-                  href={`/licenses/${LicLookup}/${PlanLookup}/${priceLookup}`}
+                  href={`./licenses/${LicLookup}/${PlanLookup}/${priceLookup}`}
                   styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
                 >
                   Open

@@ -131,7 +131,7 @@ export default function AdminUsersPage({
               {u.Username && (
                 <div class='-:-:flex -:-:gap-2'>
                   <Action
-                    href={`/users/${encodeURIComponent(u.Username)}`}
+                    href={`./users/${encodeURIComponent(u.Username)}`}
                     styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
                   >
                     Manage

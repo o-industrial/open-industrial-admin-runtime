@@ -102,7 +102,7 @@ export const handler: EaCRuntimeHandlerSet<
       await ctx.State.OIClient.Admin.CommitEaC(commit);
 
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromBase(`/access-cards/${acLookup}`),
+        ctx.Runtime.URLMatch.FromBase(`./access-cards/${acLookup}`),
         303,
       );
     } catch (err) {
@@ -218,7 +218,7 @@ export default function AccessConfigurationPage({
       const res = await apiClient.AccessCards.Delete(AcLookup);
 
       if (res.ok) {
-        location.href = '/access-cards';
+        location.href = './access-cards';
       } else {
         setBusy(false);
         const msg = await res.text();
@@ -255,7 +255,7 @@ export default function AccessConfigurationPage({
             <p class='-:-:text-xs -:-:text-neutral-400'>Lookup: {AcLookup}</p>
           </div>
           <Action
-            href='../'
+            href='./access-cards'
             styleType={ActionStyleTypes.Outline | ActionStyleTypes.Rounded}
           >
             Back
@@ -264,7 +264,6 @@ export default function AccessConfigurationPage({
 
         <form
           method='POST'
-          action={`/access-cards/${AcLookup}`}
           onSubmit={handleFormSubmit as any}
           class='-:-:grid -:-:grid-cols-1 md:-:-:grid-cols-2 -:-:gap-4'
         >

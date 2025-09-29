@@ -169,8 +169,7 @@ export default function AccessRightPage({
 
         <form
           method='POST'
-          action={`/access-rights/${ArLookup}`}
-          onSubmit={handleFormSubmit as any}
+          onSubmit={handleFormSubmit}
           class='-:-:grid -:-:grid-cols-1 md:-:-:grid-cols-2 -:-:gap-4'
         >
           <input type='hidden' name='Enabled' value={String(enabled)} />

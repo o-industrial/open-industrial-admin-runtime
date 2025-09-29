@@ -5,7 +5,7 @@ const TEMP_URL_BASE = 'http://admin-runtime.local';
 
 type FetchLike = (
   input: RequestInfo | URL,
-  init?: RequestInit,
+  init?: RequestInit
 ) => Promise<Response>;
 
 export interface AdminRuntimeClientOptions {
@@ -60,9 +60,7 @@ function detectDocumentBasePath(): string {
   return '/';
 }
 
-function resolveBaseUrl(
-  options: AdminRuntimeClientOptions,
-): URL {
+function resolveBaseUrl(options: AdminRuntimeClientOptions): URL {
   const { baseUrl, basePath } = options;
 
   if (baseUrl instanceof URL) {
@@ -141,7 +139,7 @@ export class AdminRuntimeAPIClient extends EaCBaseClient {
 }
 
 export function createAdminRuntimeClient(
-  options: AdminRuntimeClientOptions = {},
+  options: AdminRuntimeClientOptions = {}
 ): AdminRuntimeAPIClient {
   return new AdminRuntimeAPIClient(options);
 }
@@ -149,12 +147,9 @@ export function createAdminRuntimeClient(
 class AdminRuntimeAccessRightsAPI {
   constructor(private readonly bridge: AdminRuntimeClientBridge) {}
 
-  public async Delete(
-    lookup: string,
-    init?: RequestInit,
-  ): Promise<Response> {
+  public async Delete(lookup: string, init?: RequestInit): Promise<Response> {
     const target = this.bridge.url(
-      `./access-rights/${encodeURIComponent(lookup)}`,
+      `./access-rights/${encodeURIComponent(lookup)}`
     );
 
     const requestInit: RequestInit = {
@@ -170,12 +165,9 @@ class AdminRuntimeAccessRightsAPI {
 class AdminRuntimeAccessCardsAPI {
   constructor(private readonly bridge: AdminRuntimeClientBridge) {}
 
-  public async Delete(
-    lookup: string,
-    init?: RequestInit,
-  ): Promise<Response> {
+  public async Delete(lookup: string, init?: RequestInit): Promise<Response> {
     const target = this.bridge.url(
-      `/access-cards/${encodeURIComponent(lookup)}`,
+      `./access-cards/${encodeURIComponent(lookup)}`
     );
 
     const requestInit: RequestInit = {
@@ -193,9 +185,11 @@ class AdminRuntimeLicensesAPI {
 
   public async Delete(
     licLookup: string,
-    init?: RequestInit,
+    init?: RequestInit
   ): Promise<Response> {
-    const target = this.bridge.url(`/licenses/${encodeURIComponent(licLookup)}`);
+    const target = this.bridge.url(
+      `./licenses/${encodeURIComponent(licLookup)}`
+    );
 
     const requestInit: RequestInit = {
       method: 'DELETE',
@@ -209,10 +203,12 @@ class AdminRuntimeLicensesAPI {
   public async DeletePlan(
     licLookup: string,
     planLookup: string,
-    init?: RequestInit,
+    init?: RequestInit
   ): Promise<Response> {
     const target = this.bridge.url(
-      `/licenses/${encodeURIComponent(licLookup)}/${encodeURIComponent(planLookup)}`,
+      `./licenses/${encodeURIComponent(licLookup)}/${encodeURIComponent(
+        planLookup
+      )}`
     );
 
     const requestInit: RequestInit = {
@@ -228,12 +224,12 @@ class AdminRuntimeLicensesAPI {
     licLookup: string,
     planLookup: string,
     priceLookup: string,
-    init?: RequestInit,
+    init?: RequestInit
   ): Promise<Response> {
     const target = this.bridge.url(
-      `/licenses/${encodeURIComponent(licLookup)}/${encodeURIComponent(planLookup)}/${
-        encodeURIComponent(priceLookup)
-      }`,
+      `./licenses/${encodeURIComponent(licLookup)}/${encodeURIComponent(
+        planLookup
+      )}/${encodeURIComponent(priceLookup)}`
     );
 
     const requestInit: RequestInit = {

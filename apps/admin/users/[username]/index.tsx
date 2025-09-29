@@ -71,13 +71,13 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, UserManagePag
         await ctx.State.OIClient.Admin.DeleteUser(username);
         return Response.redirect(
           ctx.Runtime.URLMatch.FromBase(
-            `/users?deleted=${encodeURIComponent(username)}`,
+            `./users?deleted=${encodeURIComponent(username)}`,
           ),
           303,
         );
       }
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromBase(`/users/${encodeURIComponent(username)}`),
+        ctx.Runtime.URLMatch.FromBase(`./users/${encodeURIComponent(username)}`),
         303,
       );
     } catch (err) {

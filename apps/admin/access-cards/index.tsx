@@ -55,7 +55,7 @@ export const handler: EaCRuntimeHandlerSet<
       const _resp = await ctx.State.OIClient.Admin.CommitEaC(commit);
 
       return Response.redirect(
-        ctx.Runtime.URLMatch.FromBase(`/access-cards/${acLookup}`),
+        ctx.Runtime.URLMatch.FromBase(`./access-cards/${acLookup}`),
         303,
       );
     } catch (err) {

@@ -50,7 +50,7 @@ export default function DashboardLayout({
 
         <link
           rel='stylesheet'
-          href={`/tailwind/styles.css?Revision=${Revision}`}
+          href={`./tailwind/styles.css?Revision=${Revision}`}
         />
 
         <link

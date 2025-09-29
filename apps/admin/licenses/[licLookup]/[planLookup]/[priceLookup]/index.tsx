@@ -104,7 +104,7 @@ export const handler: EaCRuntimeHandlerSet<OpenIndustrialWebState, PricePageData
       await ctx.State.OIClient.Admin.CommitEaC(commit);
       return Response.redirect(
         ctx.Runtime.URLMatch.FromBase(
-          `/licenses/${licLookup}/${planLookup}/${priceLookup}`,
+          `./licenses/${licLookup}/${planLookup}/${priceLookup}`,
         ),
         303,
       );
