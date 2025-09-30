@@ -16,7 +16,7 @@
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
     "clean:docker": "docker stop open-industrial-admin-runtime || true && docker rm open-industrial-admin-runtime || true",
     "deploy": "npx rimraf cov && deno task build && deno task test && npx ftm git",
-    "deploy:docker": "docker run --name open-industrial-admin-runtime --network eac-runtimes --env-file .env.docker -dp 127.0.0.1:3000:3000 open-industrial-admin-runtime",
+    "deploy:docker": "docker run --name open-industrial-admin-runtime --network eac-runtimes --env-file .env.docker -dp 127.0.0.1:5415:5415 open-industrial-admin-runtime",
     "dev": "deno run -A --watch=apps/,configs/,data/,routes/,src/,static/ dev.ts",
     "network:docker": "docker network create eac-runtimes || true",
     "publish:check": "deno publish --dry-run --allow-dirty",
@@ -27,7 +27,6 @@
   },
   "imports": {
     "@fathym/atomic-icons": "jsr:@fathym/atomic-icons@0.0.102",
-    "@fathym/atomic-icons/plugin": "jsr:@fathym/atomic-icons@0.0.102/plugin",
     "@fathym/common": "jsr:@fathym/common@0.2.273",
     // "jsr:@fathym/eac@0.2.130/runtime": "../eac/src/runtime/_/.exports.ts",
     "@fathym/eac": "jsr:@fathym/eac@0.2.130",

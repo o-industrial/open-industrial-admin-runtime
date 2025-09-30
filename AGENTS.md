@@ -1,4 +1,4 @@
-# Agents Guide – open-industrial-admin-runtime
+# Agents Guide ï¿½ open-industrial-admin-runtime
 
 Dedicated runtime for Open Industrial administrator experiences. Hosts secure dashboards and APIs for licensing, access management, user administration, and workspace provisioning, independently deployed from the marketing/workspace runtime.
 
@@ -9,19 +9,19 @@ Dedicated runtime for Open Industrial administrator experiences. Hosts secure da
 - Exclude public marketing surfaces or general workspace UX (handled by web/runtime repos).
 
 ## Project Map
-- `apps/admin/**` – core admin routes, detail pages, and colocated API handlers.
-- `apps/assets` – static assets consumed by the admin runtime.
-- `apps/tailwind` – compiled CSS template consumed by the Tailwind processor.
-- `src/plugins` – runtime plugin composition (`RuntimePlugin.ts`, shared handler resolver).
-- `configs/eac-runtime.config.ts` – EaC runtime configuration entrypoint.
-- `deno.jsonc` – tooling imports/tasks, including tailwind/npm dependencies.
-- `.env*` – environment templates for local/dev/docker/prod.
+- `apps/admin/**` ï¿½ core admin routes, detail pages, and colocated API handlers.
+- `apps/assets` ï¿½ static assets consumed by the admin runtime.
+- `apps/tailwind` ï¿½ compiled CSS template consumed by the Tailwind processor.
+- `src/plugins` ï¿½ runtime plugin composition (`RuntimePlugin.ts`, shared handler resolver).
+- `configs/eac-runtime.config.ts` ï¿½ EaC runtime configuration entrypoint.
+- `deno.jsonc` ï¿½ tooling imports/tasks, including tailwind/npm dependencies.
+- `.env*` ï¿½ environment templates for local/dev/docker/prod.
 
 ## Commands
-- `deno task dev` – launch runtime in watch mode (default port 3000).
-- `deno task check` – format check, lint, and type-check (run before PRs).
-- `deno task test` – execute admin runtime tests.
-- `deno task build` – full validation (fmt + lint + publish dry-run + tests).
+- `deno task dev` ï¿½ launch runtime in watch mode (default port 5415).
+- `deno task check` ï¿½ format check, lint, and type-check (run before PRs).
+- `deno task test` ï¿½ execute admin runtime tests.
+- `deno task build` ï¿½ full validation (fmt + lint + publish dry-run + tests).
 - Docker helpers: `deno task build:docker`, `deno task refresh:docker`.
 
 ## Patterns
