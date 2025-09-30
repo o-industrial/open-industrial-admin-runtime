@@ -51,6 +51,7 @@
     // "@fathym/eac-applications/steward/api": "../eac-applications/src/steward/api/.exports.ts",
     // "@fathym/eac-applications/steward/plugins": "../eac-applications/src/steward/plugins/.exports.ts",
     // "@fathym/eac-applications/utils": "../eac-applications/src/utils/.exports.ts",
+
     "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.115",
     "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.25",
     "@fathym/eac-identity": "jsr:@fathym/eac-identity@0.0.28",
@@ -66,7 +67,7 @@
     // "@fathym/eac-licensing/steward/api": "../eac-licensing/src/steward/api/.exports.ts",
     // "@fathym/eac-licensing/steward/plugins": "../eac-licensing/src/steward/plugins/.exports.ts",
 
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.461",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.462",
     // "@o-industrial/common/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     // "@o-industrial/common/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
     // "@o-industrial/common/atomic/organisms": "../open-industrial-reference-architecture/atomic/organisms/.exports.ts",
@@ -96,6 +97,7 @@
     // "@o-industrial/common/packs/oi-core": "../open-industrial-reference-architecture/src/packs/oi-core/.pack.ts",
 
     // "@o-industrial/common/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
+    // "@o-industrial/common/tailwind/preset": "../open-industrial-reference-architecture/configs/tailwind/preset.ts",
 
     "preact": "npm:preact@10.20.1",
     "react": "npm:preact@10.20.1/compat",
@@ -160,3 +162,4 @@
     "jsxImportSource": "preact"
   }
 }
+
