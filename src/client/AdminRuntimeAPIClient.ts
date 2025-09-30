@@ -1,4 +1,4 @@
-import { EaCBaseClient } from 'jsr:@fathym/eac@0.2.122/steward/clients';
+import { EaCBaseClient } from 'jsr:@fathym/eac@0.2.127-integration/steward/clients';
 import type { ClientHelperBridge } from '@o-industrial/common/api';
 
 const TEMP_URL_BASE = 'http://admin-runtime.local';

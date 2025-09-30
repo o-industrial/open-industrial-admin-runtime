@@ -250,7 +250,7 @@ export default function PricePage({
                           PriceLookup,
                         );
                         if (res.ok) {
-                          location.href = `/licenses/${LicLookup}/${PlanLookup}`;
+                          location.href = `./licenses/${LicLookup}/${PlanLookup}`;
                         } else {
                           setBusy(false);
                           const msg = await res.text();

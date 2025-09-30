@@ -348,7 +348,7 @@ export default function PlanPage({
                             PlanLookup,
                           );
                           if (res.ok) {
-                            location.href = `/licenses/${LicLookup}`;
+                            location.href = `./licenses/${LicLookup}`;
                           } else {
                             setBusy(false);
                             const msg = await res.text();

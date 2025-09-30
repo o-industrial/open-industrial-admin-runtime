@@ -222,7 +222,7 @@ export default function AdminUserManagePage(
               onSelect={(eac) => {
                 const lookup = eac.EnterpriseLookup || '';
                 if (lookup) {
-                  location.href = `/workspaces/${encodeURIComponent(lookup)}`;
+                  location.href = `./workspaces/${encodeURIComponent(lookup)}`;
                 }
               }}
             />
