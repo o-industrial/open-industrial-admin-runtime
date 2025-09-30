@@ -67,7 +67,7 @@
     // "@fathym/eac-licensing/steward/api": "../eac-licensing/src/steward/api/.exports.ts",
     // "@fathym/eac-licensing/steward/plugins": "../eac-licensing/src/steward/plugins/.exports.ts",
 
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.462",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.463",
     // "@o-industrial/common/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     // "@o-industrial/common/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
     // "@o-industrial/common/atomic/organisms": "../open-industrial-reference-architecture/atomic/organisms/.exports.ts",
