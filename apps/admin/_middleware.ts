@@ -42,4 +42,3 @@ export function buildOpenIndustrialAdminMiddleware(): EaCRuntimeHandler<OpenIndu
     return ctx.Next();
   };
 }
-
