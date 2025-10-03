@@ -68,6 +68,7 @@
     // "@fathym/eac-licensing/steward/plugins": "../eac-licensing/src/steward/plugins/.exports.ts",
 
     "@o-industrial/common": "jsr:@o-industrial/common@0.0.473-integration",
+    
     "@o-industrial/atomic/atoms": "../open-industrial-atomic/src/atoms/.exports.ts",
     "@o-industrial/atomic/icons": "../open-industrial-atomic/build/iconset/icons/.exports.ts",
     "@o-industrial/atomic/molecules": "../open-industrial-atomic/src/molecules/.exports.ts",
