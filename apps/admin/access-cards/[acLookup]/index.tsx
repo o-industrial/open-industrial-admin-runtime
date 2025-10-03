@@ -11,8 +11,8 @@ import {
   Badge,
   CheckboxRow,
   Input,
-} from '@o-industrial/common/atomic/atoms';
-import { LoadingIcon } from '@o-industrial/common/atomic/icons';
+} from '@o-industrial/atomic/atoms';
+import { LoadingIcon } from '@o-industrial/atomic/icons';
 import { IntentTypes } from '@o-industrial/common/types';
 import { merge } from '@fathym/common';
 import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';

@@ -25,7 +25,7 @@ Authenticated portal for managing licenses, access rights, users, and workspace 
 ## Patterns
 
 - Pair UI routes with `api/` handlers; use `Response.redirect(..., 303)` after successful writes.
-- Atomic UI comes from `@o-industrial/common/atomic/*`; avoid bespoke markup.
+- Atomic UI comes from `@o-industrial/atomic/*`; avoid bespoke markup.
 - Access control flows depend on `OpenIndustrialLicensingPlugin` + `OpenIndustrialMSALPlugin` wired in `src/plugins/RuntimePlugin.ts`; update those plugins when scopes change.
 - Logging available through the shared runtime logging provider; redact sensitive fields.
 
@@ -64,3 +64,4 @@ Authenticated portal for managing licenses, access rights, users, and workspace 
 
 - Update after major workflow changes (license issuance, workspace provisioning) or auth adjustments.
 - Maintain release notes for administrators and support teams.
+

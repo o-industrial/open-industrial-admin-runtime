@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from 'preact/hooks';
 import type { EaCRuntimeHandlerSet } from '@fathym/eac/runtime/pipelines';
 import { PageProps } from '@fathym/eac-applications/preact';
 import { OpenIndustrialAPIClient } from '@o-industrial/common/api';
-import { SearchInput } from '@o-industrial/common/atomic/atoms';
-import { WorkspaceList } from '@o-industrial/common/atomic/molecules';
+import { SearchInput } from '@o-industrial/atomic/atoms';
+import { WorkspaceList } from '@o-industrial/atomic/molecules';
 import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 
 type WorkspacesPageData = {
@@ -80,3 +80,4 @@ export default function WorkspacesPage({
     </div>
   );
 }
+

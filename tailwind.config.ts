@@ -1,5 +1,5 @@
 import type { Config } from 'npm:tailwindcss@3.4.1';
-import openIndustrialTailwindPreset from '@o-industrial/common/tailwind/preset';
+import openIndustrialTailwindPreset from '@o-industrial/atomic/tailwind/preset';
 
 const config = {
   content: ['./**/*.tsx'],
@@ -7,3 +7,4 @@ const config = {
 } satisfies Config;
 
 export default config;
+

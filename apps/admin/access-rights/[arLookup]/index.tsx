@@ -5,8 +5,8 @@ import type { EaCAccessRightAsCode, EverythingAsCodeIdentity } from '@fathym/eac
 import { JSX } from 'preact';
 import { useMemo, useState } from 'preact/hooks';
 import { createAdminRuntimeClient } from '../../../../src/client/AdminRuntimeAPIClient.ts';
-import { Action, ActionStyleTypes, CheckboxRow, Input } from '@o-industrial/common/atomic/atoms';
-import { LoadingIcon } from '@o-industrial/common/atomic/icons';
+import { Action, ActionStyleTypes, CheckboxRow, Input } from '@o-industrial/atomic/atoms';
+import { LoadingIcon } from '@o-industrial/atomic/icons';
 import { IntentTypes } from '@o-industrial/common/types';
 import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 import { merge } from '@fathym/common';

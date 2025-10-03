@@ -8,7 +8,7 @@ import type {
 import type { EverythingAsCode } from '@fathym/eac';
 import { useState } from 'preact/hooks';
 import { JSX } from 'preact';
-import { Action, ActionStyleTypes, Input } from '@o-industrial/common/atomic/atoms';
+import { Action, ActionStyleTypes, Input } from '@o-industrial/atomic/atoms';
 import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 
 export const IsIsland = true;
@@ -185,3 +185,4 @@ export default function LicensesPage(
     </div>
   );
 }
+

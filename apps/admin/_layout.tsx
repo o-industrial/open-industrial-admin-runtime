@@ -1,7 +1,7 @@
 import { PageProps } from '@fathym/eac-applications/preact';
 import type { EaCRuntimeHandlerSet } from '@fathym/eac/runtime/pipelines';
-import { AdminDashboardTemplate } from '@o-industrial/common/atomic/templates';
-import { AdminNav } from '@o-industrial/common/atomic/molecules';
+import { AdminDashboardTemplate } from '@o-industrial/atomic/templates';
+import { AdminNav } from '@o-industrial/atomic/molecules';
 import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 
 type AdminLayoutData = {
@@ -79,3 +79,4 @@ export default function DashboardLayout({
     </html>
   );
 }
+

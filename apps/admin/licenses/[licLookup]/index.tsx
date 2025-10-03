@@ -11,8 +11,8 @@ import type {
   EaCLicenseStripeDetails,
   EverythingAsCodeLicensing,
 } from '@fathym/eac-licensing';
-import { Action, ActionStyleTypes, CheckboxRow, Input } from '@o-industrial/common/atomic/atoms';
-import { LoadingIcon } from '@o-industrial/common/atomic/icons';
+import { Action, ActionStyleTypes, CheckboxRow, Input } from '@o-industrial/atomic/atoms';
+import { LoadingIcon } from '@o-industrial/atomic/icons';
 import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 import { IntentTypes } from '@o-industrial/common/types';
 import type { EverythingAsCode } from '@fathym/eac';
