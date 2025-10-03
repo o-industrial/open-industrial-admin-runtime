@@ -64,4 +64,3 @@ Authenticated portal for managing licenses, access rights, users, and workspace 
 
 - Update after major workflow changes (license issuance, workspace provisioning) or auth adjustments.
 - Maintain release notes for administrators and support teams.
-

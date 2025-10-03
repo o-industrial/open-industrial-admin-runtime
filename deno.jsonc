@@ -68,14 +68,18 @@
     // "@fathym/eac-licensing/steward/plugins": "../eac-licensing/src/steward/plugins/.exports.ts",
 
     "@o-industrial/common": "jsr:@o-industrial/common@0.0.475-integration",
-
-    "jsr:@o-industrial/atomic@0.0.5-integration/atoms": "../open-industrial-atomic/src/atoms/.exports.ts",
-    "jsr:@o-industrial/atomic@0.0.5-integration/icons": "../open-industrial-atomic/build/iconset/icons/.exports.ts",
-    "jsr:@o-industrial/atomic@0.0.5-integration/molecules": "../open-industrial-atomic/src/molecules/.exports.ts",
-    "jsr:@o-industrial/atomic@0.0.5-integration/organisms": "../open-industrial-atomic/src/organisms/.exports.ts",
-    "jsr:@o-industrial/atomic@0.0.5-integration/templates": "../open-industrial-atomic/src/templates/.exports.ts",
-    "jsr:@o-industrial/atomic@0.0.5-integration/tailwind/preset": "../open-industrial-atomic/configs/tailwind/preset.ts",
-    "jsr:@o-industrial/atomic@0.0.5-integration/utils": "../open-industrial-atomic/src/utils/.exports.ts",
+    // "@o-industrial/common/api": "../open-industrial-reference-architecture/src/api/.exports.ts",
+    // "@o-industrial/common/eac": "../open-industrial-reference-architecture/src/eac/.exports.ts",
+    // "@o-industrial/common/flow": "../open-industrial-reference-architecture/src/flow/.exports.ts",
+    // "@o-industrial/common/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
+    // "@o-industrial/common/types": "../open-industrial-reference-architecture/src/types/.exports.ts",
+    
+    "@o-industrial/atomic": "jsr:@o-industrial/atomic@0.0.5-integration",
+    // "@o-industrial/atomic/atoms": "../open-industrial-atomic/src/atoms/.exports.ts",
+    // "@o-industrial/atomic/icons": "../open-industrial-atomic/build/iconset/icons/.exports.ts",
+    // "@o-industrial/atomic/molecules": "../open-industrial-atomic/src/molecules/.exports.ts",
+    // "@o-industrial/atomic/templates": "../open-industrial-atomic/src/templates/.exports.ts",
+    // "@o-industrial/atomic/tailwind/preset": "../open-industrial-atomic/configs/tailwind/preset.ts",
 
     "preact": "npm:preact@10.20.1",
     "react": "npm:preact@10.20.1/compat",

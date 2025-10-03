@@ -5,13 +5,7 @@ import type { EaCAccessConfigurationAsCode, EverythingAsCodeIdentity } from '@fa
 import { JSX } from 'preact';
 import { useEffect, useMemo, useState } from 'preact/hooks';
 import { createAdminRuntimeClient } from '../../../../src/client/AdminRuntimeAPIClient.ts';
-import {
-  Action,
-  ActionStyleTypes,
-  Badge,
-  CheckboxRow,
-  Input,
-} from '@o-industrial/atomic/atoms';
+import { Action, ActionStyleTypes, Badge, CheckboxRow, Input } from '@o-industrial/atomic/atoms';
 import { LoadingIcon } from '@o-industrial/atomic/icons';
 import { IntentTypes } from '@o-industrial/common/types';
 import { merge } from '@fathym/common';
