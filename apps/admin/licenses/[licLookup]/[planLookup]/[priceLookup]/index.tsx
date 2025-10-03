@@ -14,7 +14,7 @@ import { Action, ActionStyleTypes, Input } from '@o-industrial/atomic/atoms';
 import { LoadingIcon } from '@o-industrial/atomic/icons';
 import type { EverythingAsCode } from '@fathym/eac';
 import { merge } from '@fathym/common';
-import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
+import type { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 import { IntentTypes } from '@o-industrial/common/types';
 import { createAdminRuntimeClient } from '../../../../../../src/client/AdminRuntimeAPIClient.ts';
 

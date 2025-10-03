@@ -9,7 +9,7 @@ import { Action, ActionStyleTypes, Badge, CheckboxRow, Input } from '@o-industri
 import { LoadingIcon } from '@o-industrial/atomic/icons';
 import { IntentTypes } from '@o-industrial/common/types';
 import { merge } from '@fathym/common';
-import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
+import type { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 
 export const IsIsland = true;
 

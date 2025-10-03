@@ -3,7 +3,7 @@ import type { EaCRuntimeHandlerSet } from '@fathym/eac/runtime/pipelines';
 import { PageProps } from '@fathym/eac-applications/preact';
 import { Action, ActionStyleTypes } from '@o-industrial/atomic/atoms';
 import { PanelShell, SummaryRowWithAction } from '@o-industrial/atomic/molecules';
-import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
+import type { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 import { useState } from 'preact/hooks';
 import { EverythingAsCodeOIWorkspace } from '@o-industrial/common/eac';
 import { EaCCloudAzureDetails } from '@fathym/eac-azure';

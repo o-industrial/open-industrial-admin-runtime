@@ -5,7 +5,7 @@ import { OpenIndustrialAPIClient } from '@o-industrial/common/api';
 import { AdminManager } from '@o-industrial/common/flow';
 import type { EverythingAsCode } from '@fathym/eac';
 import type { EaCUserLicense, EverythingAsCodeLicensing } from '@fathym/eac-licensing';
-import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
+import type { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 
 export const IsIsland = true;
 
@@ -86,3 +86,4 @@ export default function AdminPage({
     </section>
   );
 }
+

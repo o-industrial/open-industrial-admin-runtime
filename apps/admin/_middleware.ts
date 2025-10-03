@@ -4,7 +4,7 @@ import { OpenIndustrialAPIClient } from '@o-industrial/common/api';
 import { OpenIndustrialJWTPayload } from '@o-industrial/common/types';
 import { EaCRefreshController } from '@fathym/eac-applications/runtime/refresh';
 
-import { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
+import type { OpenIndustrialWebState } from '@o-industrial/common/runtimes';
 import { EaCApplicationsRuntimeContext } from '@fathym/eac-applications/runtime';
 
 export default [
@@ -42,3 +42,4 @@ export function buildOpenIndustrialAdminMiddleware(): EaCRuntimeHandler<OpenIndu
     return ctx.Next();
   };
 }
+
