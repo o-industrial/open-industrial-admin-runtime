@@ -67,7 +67,7 @@
     // "@fathym/eac-licensing/steward/api": "../eac-licensing/src/steward/api/.exports.ts",
     // "@fathym/eac-licensing/steward/plugins": "../eac-licensing/src/steward/plugins/.exports.ts",
 
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.470-hmis",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.473-integration",
 
     "preact": "npm:preact@10.20.1",
     "react": "npm:preact@10.20.1/compat",
